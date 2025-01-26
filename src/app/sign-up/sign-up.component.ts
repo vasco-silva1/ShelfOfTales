@@ -19,12 +19,21 @@ export class SignUpComponent {
   constructor(private userService: UserService) { }
 
   signUp() {
-    this.userService.createUser(this.newUser).subscribe(res => this.msg=res);
-    console.log(this.msg);
-    this.reserUser();
-  }
+    this.userService.createUser(this.newUser).subscribe({
+      next: (response) => {
+        console.log('User created successfully:', response);
+        alert('Sign up successful! Welcome to our platform.');
+      },
+      error: (error) => {
+        console.error('Error during sign up:', error);
+        alert('Sign up failed. Please try again.');
+      }
+    });}
+  //   console.log(this.msg);
+  //   this.reserUser();
+  // }
 
-  reserUser() {
+  resetUser() {
     this.newUser = { name: '', email: '', password: '' };
   }
 }

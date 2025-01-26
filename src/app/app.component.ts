@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { SignUpComponent } from "./sign-up/sign-up.component";
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
