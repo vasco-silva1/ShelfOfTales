@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { User } from '../Models/user';
 import { UserService } from '../Services/user.service';
+import { FormsModule, NgModel } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })

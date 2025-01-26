@@ -1,1 +1,19 @@
-<p>sign-up works!</p>
+<table>
+        <tr>
+      <td><label for="name">Name:</label></td>
+      <td><input type="text" id="name" [(ngModel)]="newUser.name" required /></td>
+    </tr>
+    <tr>
+      <td><label for="email">Email:</label></td>
+      <td><input type="email" id="email" [(ngModel)]="newUser.email" required /></td>
+    </tr>
+    <tr>
+      <td><label for="password">Password:</label></td>
+      <td><input type="password" id="password" [(ngModel)]="newUser.password" required /></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <button (click)="signUp()">Sign Up</button>
+      </td>
+    </tr>
+  </table>
