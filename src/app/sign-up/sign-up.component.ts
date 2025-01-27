@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../Models/user';
 import { UserService } from '../Services/user.service';
 import { FormsModule, NgModel } from '@angular/forms';
-import { NgClass } from '@angular/common';
+
 
 
 @Component({
@@ -23,15 +23,14 @@ export class SignUpComponent {
       next: (response) => {
         console.log('User created successfully:', response);
         alert('Sign up successful! Welcome to our platform.');
+        this.resetUser();
       },
       error: (error) => {
         console.error('Error during sign up:', error);
         alert('Sign up failed. Please try again.');
       }
     });}
-  //   console.log(this.msg);
-  //   this.reserUser();
-  // }
+
 
   resetUser() {
     this.newUser = { name: '', email: '', password: '' };
