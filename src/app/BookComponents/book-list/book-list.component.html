@@ -1,13 +1,13 @@
 <div class="book-list">
     <h1>Lista de Livros</h1>
   
-    <!-- Mensagem de carregamento -->
+ 
     <div *ngIf="isLoading">Carregando livros...</div>
   
-    <!-- Mensagem de erro -->
+
     <div *ngIf="errorMessage">{{ errorMessage }}</div>
   
-    <!-- Tabela de livros -->
+
     <table *ngIf="!isLoading && books.length > 0">
       <thead>
         <tr>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
   
-    <!-- Caso não haja livros -->
+
     <div *ngIf="!isLoading && books.length === 0">Nenhum livro encontrado.</div>
   </div>
   

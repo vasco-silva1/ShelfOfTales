@@ -1,0 +1,40 @@
+<div class="detalhes-livro" *ngIf="book">
+    <h1>📖 Detalhes do Livro</h1>
+  
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <strong>Erro:</strong> {{ errorMessage }}
+    </div>
+  
+    <!-- Mensagem de carregamento -->
+    <div *ngIf="!errorMessage && !book" class="alert alert-loading">
+      Carregando os detalhes do livro...
+    </div>
+  
+    <!-- Detalhes do livro -->
+    <div *ngIf="book" class="livro-container">
+      <!-- Capa do livro -->
+      <div class="livro-capa">
+        <img [src]="book.cover" [alt]="'Capa de ' + book.title" class="capa-livro" />
+      </div>
+  
+      <!-- Informações do livro -->
+      <div class="livro-info">
+        <p><strong>📚 ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>📝 Título:</strong> {{ book.title }}</p>
+        <p><strong>🏷️ Categoria:</strong> {{ book.category }}</p>
+        <p><strong>💵 Preço:</strong> {{ book.price | currency:'EUR':'symbol' }}</p>
+        <p>
+          <strong>📦 Disponível:</strong>
+          <span [class]="book.available ? 'status disponivel' : 'status indisponivel'">
+            {{ book.available ? 'Sim' : 'Não' }}
+          </span>
+        </p>
+        <p>
+          <strong>👨‍💻 Autores:</strong>
+          <span class="autores">{{ book.author.join(', ') }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  

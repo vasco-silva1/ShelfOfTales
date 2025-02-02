@@ -1,1 +1,83 @@
-<p>create-book works!</p>
+<div class="create-book">
+    <h1>Criar Novo Livro</h1>
+  
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Formulário para criar o livro -->
+    <form [formGroup]="bookForm" (ngSubmit)="createBook()">
+      
+      <!-- ISBN -->
+      <div>
+        <label for="isbn">ISBN:</label>
+        <input id="isbn" formControlName="isbn" type="text" required />
+        <div *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched">
+          O ISBN deve ter pelo menos 10 caracteres.
+        </div>
+      </div>
+  
+      <!-- Título -->
+      <div>
+        <label for="title">Título:</label>
+        <input id="title" formControlName="title" type="text" required />
+        <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+          O título é obrigatório.
+        </div>
+      </div>
+  
+    <!-- Autores -->
+    <div formArrayName="author">
+        <label>Autores:</label>
+        <div *ngFor="let author of authors.controls; let i = index">
+          <!-- Vincula o formControlName ao índice -->
+          <input [formControlName]="i" type="text" placeholder="Nome do autor" />
+          <button type="button" (click)="removeAuthor(i)" *ngIf="authors.length > 1">Remover</button>
+          <div *ngIf="authors.at(i)?.invalid && authors.at(i)?.touched">
+            O nome do autor não pode estar vazio.
+          </div>
+        </div>
+        <button type="button" (click)="addAuthor()">Adicionar Autor</button>
+      </div>
+      
+  
+      <!-- Categoria -->
+      <div>
+        <label for="category">Categoria:</label>
+        <input id="category" formControlName="category" type="text" required />
+        <div *ngIf="bookForm.get('category')?.invalid && bookForm.get('category')?.touched">
+          A categoria é obrigatória.
+        </div>
+      </div>
+  
+      <!-- Capa (URL) -->
+      <div>
+        <label for="cover">URL da Capa:</label>
+        <input id="cover" formControlName="cover" type="text" />
+      </div>
+  
+      <!-- Preço -->
+      <div>
+        <label for="price">Preço:</label>
+        <input id="price" formControlName="price" type="number" required />
+        <div *ngIf="bookForm.get('price')?.invalid && bookForm.get('price')?.touched">
+          O preço deve ser um número positivo.
+        </div>
+      </div>
+  
+      <!-- Disponibilidade -->
+      <div>
+        <label for="available">Disponível:</label>
+        <input id="available" formControlName="available" type="checkbox" />
+      </div>
+  
+      <!-- Botão de envio -->
+      <div>
+        <button type="submit" [disabled]="isSubmitting || bookForm.invalid">
+          {{ isSubmitting ? 'Enviando...' : 'Criar Livro' }}
+        </button>
+      </div>
+    </form>
+  </div>
+  

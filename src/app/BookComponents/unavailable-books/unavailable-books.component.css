@@ -1,0 +1,18 @@
+.unavailable-books {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #fce4e4;
+    border: 1px solid #f5c2c2;
+    border-radius: 5px;
+  }
+  
