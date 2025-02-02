@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { Book } from '../Models/book';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   // Cria um novo livro (role: manager)
-  createBook(book: any): Observable<any> {
-    return this.http.post(`${this.API_URL}`, book);
+  createBook(book: Book): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}`, book);
   }
 
   // Obtem todos os livros existentes (role: client)

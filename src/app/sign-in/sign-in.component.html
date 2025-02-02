@@ -1,4 +1,4 @@
-<!-- <table>
+<table>
 <tr>
   <td><label for="email">Email:</label></td>
   <td><input type="email" id="email" [(ngModel)]="newLogin.email" required /></td>
@@ -12,8 +12,8 @@
     <button (click)="signIn()">Sign Up</button>
   </td>
 </tr>
-</table> -->
-<div class="login-container">
+</table>
+<!-- <div class="login-container">
   <div class="login-left">
     <h2>Login! 👋R</h2>    <p>How do I get started?</p>
     <button class="btn btn-google">Sign in with Google</button>
@@ -24,7 +24,7 @@
       <input type="email" id="email" name="email" placeholder="test@atheros.ai">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="******">
-      <button type="submit" class="btn btn-signin">Sign In</button>
+      <button type="submit" class="btn btn-signin" (click)="signIn()">Sign In</button>
     </form>
     <p>Don't have an account? <a href="SignUp">Sign Up Now</a></p>
   </div>
@@ -35,4 +35,4 @@
       <img src="assets/dashboard-example.png" alt="Dashboard example">
     </div>
   </div>
-</div>
+</div> -->

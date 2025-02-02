@@ -5,4 +5,5 @@ export interface Book {
     category : string;
     cover : string;
     price: number;
+    available: boolean;
 }
