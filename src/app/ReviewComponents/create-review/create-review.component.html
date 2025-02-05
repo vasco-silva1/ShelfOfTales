@@ -1,0 +1,39 @@
+<div class="create-review-container">
+  <h1>Submit Your Review</h1>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Review Form -->
+  <form (ngSubmit)="submitReview()">
+    <div class="form-group">
+      <label for="reviewText">Your Review</label>
+      <textarea
+        id="reviewText"
+        class="form-control"
+        [(ngModel)]="reviewText"
+        name="reviewText"
+        rows="5"
+        placeholder="Write your review here..."
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
+  </form>
+
+  <!-- Back Button -->
+  <button
+    class="btn btn-secondary mt-3"
+    (click)="router.navigate(['/books'])"
+  >
+    Back to Books
+  </button>
+</div>

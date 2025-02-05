@@ -1,0 +1,19 @@
+<div>
+    <h1>Atualizar Disponibilidade</h1>
+  
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Mensagem de sucesso -->
+    <div *ngIf="message" class="alert alert-success">
+      {{ message }}
+    </div>
+  
+    <div *ngIf="!errorMessage">
+      <button (click)="updateAvailability(true)">Marcar como Disponível</button>
+      <button (click)="updateAvailability(false)">Marcar como Indisponível</button>
+    </div>
+  </div>
+  

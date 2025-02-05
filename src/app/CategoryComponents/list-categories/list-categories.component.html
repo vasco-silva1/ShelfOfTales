@@ -1,0 +1,19 @@
+<div class="categories-container">
+    <h2>Lista de Categorias</h2>
+  
+    <!-- Mensagem de erro -->
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+    <!-- Lista de categorias -->
+    <ul *ngIf="categories.length > 0; else noCategories">
+      <li *ngFor="let category of categories">
+        {{ category.name }}
+      </li>
+    </ul>
+  
+    <!-- Mensagem caso não existam categorias -->
+    <ng-template #noCategories>
+      <p>Nenhuma categoria encontrada.</p>
+    </ng-template>
+  </div>
+  

@@ -1,0 +1,27 @@
+<div>
+    <h1>Editar Livro</h1>
+  
+    <!-- Exibe mensagem de erro ou sucesso -->
+    <p *ngIf="message">{{ message }}</p>
+  
+    <!-- Formulário -->
+    <form [formGroup]="bookForm" (ngSubmit)="updateBook()">
+      <label>Título:</label>
+      <input formControlName="title" type="text" />
+  
+      <label>Autores (separados por vírgula):</label>
+      <input formControlName="author" type="text" />
+  
+      <label>Categoria:</label>
+      <input formControlName="category" type="text" />
+  
+      <label>Preço:</label>
+      <input formControlName="price" type="number" />
+  
+      <label>URL da Capa:</label>
+      <input formControlName="cover" type="text" />
+  
+      <button type="submit" [disabled]="bookForm.invalid">Atualizar</button>
+    </form>
+  </div>
+  
