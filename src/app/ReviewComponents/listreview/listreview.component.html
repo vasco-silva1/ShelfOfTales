@@ -1,0 +1,31 @@
+
+<!-- <button class="btn open-modal" (click)="openModal()">📢 Ver Avaliações</button> -->
+
+<!-- Modal -->
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <!-- Botão de Fechar -->
+    <button class="close-modal" (click)="closeModal()">&#x2715;</button>
+    
+    <h2>📖 Avaliações do Livro</h2>
+
+    <!-- Se houver erro -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <strong>Erro:</strong> {{ errorMessage }}
+    </div>
+
+    <!-- Lista de reviews -->
+    <div *ngIf="reviews.length > 0" class="reviews-container">
+      <div *ngFor="let review of reviews" class="review-card">
+        <p class="review-date">📅 {{ review.date }}</p>
+        <p class="review-email">📧 {{ review.reviewerEmail }}</p>
+        <p class="review-text">"{{ review.review }}"</p>
+      </div>
+    </div>
+
+    <!-- Caso não haja reviews -->
+    <div *ngIf="!errorMessage && reviews.length === 0" class="no-reviews">
+      Nenhuma avaliação disponível. Seja o primeiro a avaliar! 😊
+    </div>
+  </div>
+</div>

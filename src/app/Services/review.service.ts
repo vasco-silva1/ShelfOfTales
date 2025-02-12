@@ -17,7 +17,7 @@ private theEndPoint = 'https://shelfoftales.onrender.com/api/review';
     return this.http.post<any>(this.theEndPoint, newReview);
   }
 
-  // GET - Obtém todas as categorias existentes
+  // GET - Obtém todas as reviews de um livro com o isbn especificado
   getAllReviews(isbn:string): Observable<GetReview[]> {
     return this.http.get<GetReview[]>(`${this.theEndPoint}/${isbn}`);
   }

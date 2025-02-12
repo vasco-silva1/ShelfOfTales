@@ -4,6 +4,7 @@ import { BookService } from '../../Services/book.service';
 import { Router } from '@angular/router';
 import { Book } from '../../Models/book';
 import { NgIf, NgFor } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-create-book',
@@ -16,11 +17,16 @@ export class CreateBookComponent {
   bookForm: FormGroup;
   isSubmitting = false;
   errorMessage = '';
+  
+  
+  
+
 
   constructor(
     private fb: FormBuilder,
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    private authService : AuthService
   ) {
     this.bookForm = this.fb.group({
       isbn: ['', [Validators.required, Validators.minLength(10)]],

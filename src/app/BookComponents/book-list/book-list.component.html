@@ -1,4 +1,4 @@
-<div class="book-list">
+<!-- <div class="book-list">
     <h1>Lista de Livros</h1>
   
  
@@ -30,4 +30,21 @@
 
     <div *ngIf="!isLoading && books.length === 0">Nenhum livro encontrado.</div>
   </div>
-  
+   -->
+   <div *ngIf="isLoading">Carregando livros...</div>
+   <div *ngIf="errorMessage">{{ errorMessage }}</div>
+   
+   <div class="book-list">
+     <div *ngFor="let book of books" (click)="openModal(book.isbn)" class="book-card">
+       <h3>{{ book.title }}</h3>
+       <p>{{ book.author }}</p>
+     </div>
+   </div>
+   
+   <!-- Modal de Livro -->
+   <app-get-book 
+     *ngIf="selectedBookIsbn"
+     [isbn]="selectedBookIsbn"
+     (close)="closeModal()">
+   </app-get-book>
+   

@@ -1,0 +1,60 @@
+/* Container Principal */
+.delete-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Alertas */
+  .alert {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  /* Botões */
+  .delete-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  /* Botão Excluir */
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #b02a37;
+  }
+  
+  /* Botão Cancelar */
+  .btn-cancel {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #545b62;
+  }

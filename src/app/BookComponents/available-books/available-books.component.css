@@ -1,18 +1,103 @@
-.available-books {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ul li {
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.capa-livro {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.disponivel {
+  color: green;
+}
+
+.status.indisponivel {
+  color: red;
+}
+/* Grade de Livros */
+.books-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Centraliza os cards */
+  padding: 20px;
+}
+
+/* Estilo do Card */
+.book-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 200px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Efeito de zoom ao passar o mouse */
+  cursor: pointer; /* Cursor de clique */
+}
+
+.book-card:hover {
+  transform: scale(1.05); /* Aumenta o tamanho do card ao passar o mouse */
+}
+
+/* Imagem do Livro */
+.book-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover; /* Garante que a imagem se ajuste ao espaço */
+}
+
+/* Informações do Livro */
+.book-info {
+  padding: 10px;
+  color: #333;
+}
+
+.book-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.book-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+.book-rating {
+  font-weight: bold;
+  color: #0071c2; /* Azul para destaque */
+}

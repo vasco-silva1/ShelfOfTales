@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { TokenService } from './token.service';
 import { User } from '../Models/user';
 import { UserLogIn } from '../Models/user-log-in';
+import { UserAuth } from '../Models/user-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,10 @@ export class AuthService {
 
   private endPoint = "https://shelfoftales.onrender.com/api/user";
 
-  private userSubject = new BehaviorSubject<User | null>(null);
+  public userSubject = new BehaviorSubject< UserAuth | null>(null);
 
-  public user?: Observable<User | null>;
+  public user : Observable<UserAuth | null>;
+  
 
 
   constructor(private http : HttpClient, private tokenServ:TokenService) { 
@@ -29,7 +31,7 @@ export class AuthService {
 
 
   signIn(newLogin: UserLogIn) {
-    return this.http.post<User>(`${this.endPoint}/signin`, newLogin)
+    return this.http.post<UserAuth>(`${this.endPoint}/signin`, newLogin)
       .pipe(
         map(user => {
           this.tokenServ.saveToken('user', JSON.stringify(user));
@@ -44,17 +46,25 @@ export class AuthService {
     return this.http.get<any>(`${this.endPoint}`);
   }
 
+  getUserRoleInTime() : Observable<string> {
+    return this.http.get<UserAuth>(`${this.endPoint}`).pipe(
+      map(res => res.role)
+    );
+  }
+
   logout() { this.tokenServ.deleteToken('user'); this.userSubject.next(null) }
 
   
   hasToken(): boolean {
-    return this.tokenServ.hasToken !== null;
+    return this.tokenServ.hasToken('user');
   }
 
-  role(): string {
+  role(): string | null {
     return this.tokenServ.getRole('user'); 
   }
-
+  hasRole(role: string): boolean {
+    return this.userSubject.value?.role === role;
+  }
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

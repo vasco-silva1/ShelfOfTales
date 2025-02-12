@@ -1,80 +1,97 @@
+/* Fundo escuro para destacar o pop-up */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Mantém o modal acima de tudo */
+}
+
+/* Caixa do pop-up */
+.modal-content {
+  background: white;
+  width: 35%; /* Define um tamanho adequado */
+  max-width: 500px; /* Garante que não fique muito grande */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Efeito de fade ao abrir */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Botão de fechar (X) */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Layout interno */
 .detalhes-livro {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .alert {
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-  }
-  
-  .alert-loading {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-  }
-  
-  .livro-container {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-  
-  .livro-capa img {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .livro-info {
-    flex: 1;
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .livro-info p {
-    margin: 10px 0;
-  }
-  
-  .livro-info .status {
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-  
-  .livro-info .status.disponivel {
-    color: #155724;
-    background-color: #d4edda;
-  }
-  
-  .livro-info .status.indisponivel {
-    color: #721c24;
-    background-color: #f8d7da;
-  }
-  
-  .autores {
-    color: #007bff;
-    font-style: italic;
-  }
-  
+  text-align: center;
+}
+
+.livro-capa img {
+  max-width: 120px; /* Reduz tamanho da imagem */
+  border-radius: 5px;
+}
+
+.livro-info {
+  font-size: 14px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.acoes-livro {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Botões estilizados */
+.btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-delete {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.btn-update {
+  background-color: #ffa500;
+  color: white;
+}
+
+.btn-reviews {
+  background-color: #007bff;
+  color: white;
+}
+

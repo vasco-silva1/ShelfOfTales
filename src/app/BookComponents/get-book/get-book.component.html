@@ -1,24 +1,82 @@
-<div class="detalhes-livro" *ngIf="book">
-    <h1>📖 Detalhes do Livro</h1>
+<!-- <div class="detalhes-livro" *ngIf="book">
+  <h1>📖 Detalhes do Livro</h1>
+
+
+  <div *ngIf="errorMessage" class="alert alert-error">
+    <strong>Erro:</strong> {{ errorMessage }}
+  </div>
+
+
+  <div class="livro-container">
   
+    <div class="livro-capa">
+      <img [src]="book.cover" [alt]="'Capa de ' + book.title" class="capa-livro" />
+    </div>
+
+  
+    <div class="livro-info">
+      <p><strong>📚 ISBN:</strong> {{ book.isbn }}</p>
+      <p><strong>📝 Título:</strong> {{ book.title }}</p>
+      <p><strong>🏷️ Categoria:</strong> {{ book.category }}</p>
+      <p><strong>💵 Preço:</strong> {{ book.price | currency:'EUR':'symbol' }}</p>
+      <p>
+        <strong>📦 Disponível:</strong>
+        <span [class]="book.available ? 'status disponivel' : 'status indisponivel'">
+          {{ book.available ? 'Sim' : 'Não' }}
+        </span>
+      </p>
+      <p>
+        <strong>👨‍💻 Autores:</strong>
+        <span class="autores">{{ book.author.join(', ') }}</span>
+      </p>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="modal" *ngIf="book">
+  <div class="modal-content">
+    <button class="close-modal" (click)="closeModal()">&#x2715;</button>
+    <h1>📖 Detalhes do Livro</h1>
+
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <strong>Erro:</strong> {{ errorMessage }}
+    </div>
+
+    <div class="livro-container">
+      <div class="livro-capa">
+        <img [src]="book.cover" [alt]="'Capa de ' + book.title" class="capa-livro" />
+      </div>
+      <div class="livro-info">
+        <p><strong>📚 ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>📝 Título:</strong> {{ book.title }}</p>
+        <p><strong>🏷️ Categoria:</strong> {{ book.category }}</p>
+        <p><strong>💵 Preço:</strong> {{ book.price | currency:'EUR':'symbol' }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Mensagem de carregamento -->
+<div *ngIf="!book && !errorMessage" class="loading-message">
+  🔄 Carregando detalhes do livro...
+</div>
+
+<!-- Modal para Exibir os Detalhes do Livro -->
+<div class="modal" *ngIf="book">
+  <div class="modal-content">
+    <button class="close-modal" (click)="closeModal()">&#x2715;</button>
+    <h1>📖 Detalhes do Livro</h1>
+
     <!-- Mensagem de erro -->
     <div *ngIf="errorMessage" class="alert alert-error">
       <strong>Erro:</strong> {{ errorMessage }}
     </div>
-  
-    <!-- Mensagem de carregamento -->
-    <div *ngIf="!errorMessage && !book" class="alert alert-loading">
-      Carregando os detalhes do livro...
-    </div>
-  
+
     <!-- Detalhes do livro -->
-    <div *ngIf="book" class="livro-container">
-      <!-- Capa do livro -->
+    <div class="livro-container">
       <div class="livro-capa">
         <img [src]="book.cover" [alt]="'Capa de ' + book.title" class="capa-livro" />
       </div>
-  
-      <!-- Informações do livro -->
       <div class="livro-info">
         <p><strong>📚 ISBN:</strong> {{ book.isbn }}</p>
         <p><strong>📝 Título:</strong> {{ book.title }}</p>
@@ -36,5 +94,20 @@
         </p>
       </div>
     </div>
+
+    <!-- Botões de Ação -->
+    <div class="acoes-livro">
+      <button class="btn btn-delete" (click)="goToDeleteBook()">🗑️ Excluir Livro</button>
+      <button class="btn btn-update" (click)="updateBook()">✏️ Editar Livro</button>
+      <button class="btn btn-reviews" (click)="viewReviews()">⭐ Ver Avaliações</button>
+    </div>
+    <!-- Local onde os modais de outras rotas (delete/update/reviews) serão carregados -->
+    <router-outlet></router-outlet>    
   </div>
-  
+</div>
+
+
+
+
+
+

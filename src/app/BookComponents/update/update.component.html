@@ -1,27 +1,44 @@
-<div>
-    <h1>Editar Livro</h1>
-  
-    <!-- Exibe mensagem de erro ou sucesso -->
-    <p *ngIf="message">{{ message }}</p>
-  
-    <!-- Formulário -->
-    <form [formGroup]="bookForm" (ngSubmit)="updateBook()">
-      <label>Título:</label>
-      <input formControlName="title" type="text" />
-  
-      <label>Autores (separados por vírgula):</label>
-      <input formControlName="author" type="text" />
-  
-      <label>Categoria:</label>
-      <input formControlName="category" type="text" />
-  
-      <label>Preço:</label>
-      <input formControlName="price" type="number" />
-  
-      <label>URL da Capa:</label>
-      <input formControlName="cover" type="text" />
-  
-      <button type="submit" [disabled]="bookForm.invalid">Atualizar</button>
+<div class="modal">
+  <div class="modal-content">
+    <button class="close-modal" (click)="closeModal()">&#x2715;</button>
+
+    <h2 class="modal-title">✏️ Editar Livro</h2>
+
+    <!-- 🔴 Mostra um indicador de carregamento antes de exibir o formulário -->
+    <div *ngIf="!book && !message" class="loading-message">
+      🔄 Carregando detalhes do livro...
+    </div>
+
+    <!-- 🔴 Só exibe o formulário se "book" existir -->
+    <form *ngIf="book" [formGroup]="bookForm" (ngSubmit)="updateBook()" class="form-container">
+      <div class="form-group">
+        <label for="title">Título:</label>
+        <input id="title" type="text" formControlName="title" />
+      </div>
+
+      <div class="form-group">
+        <label for="author">Autores (separados por vírgula):</label>
+        <input id="author" type="text" formControlName="author" />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Categoria:</label>
+        <input id="category" type="text" formControlName="category" />
+      </div>
+
+      <div class="form-group">
+        <label for="price">Preço (€):</label>
+        <input id="price" type="number" formControlName="price" />
+      </div>
+
+      <div class="form-group">
+        <label for="cover">URL da Capa:</label>
+        <input id="cover" type="text" formControlName="cover" />
+      </div>
+
+      <button type="submit" class="btn-update" [disabled]="bookForm.invalid">Atualizar</button>
     </form>
+
+    <p *ngIf="message" class="message">{{ message }}</p>
   </div>
-  
+</div>

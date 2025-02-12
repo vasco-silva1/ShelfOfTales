@@ -32,5 +32,18 @@ export class TokenService {
     else{
       return '';}
     }
+
+    hasValidToken(): boolean {
+      const token = this.getToken('user'); // Supondo que o token esteja salvo como 'accessToken'
+      if (!token) return false; // Se não houver token, já retornamos falso
+  
+      try {
+        const tokenPayload = JSON.parse(atob(token.split('.')[1])); // Decodifica a parte do payload do JWT
+        const expiration = tokenPayload.exp * 1000; // Converter de segundos para milissegundos
+        return expiration > Date.now(); // Retorna verdadeiro se o token ainda não expirou
+      } catch (error) {
+        return false; // Se houver erro ao decodificar o token, ele é inválido
+      }
+    }
   
 }

@@ -1,15 +1,41 @@
 
-<div class="delete-book">
+<!-- <div class="delete-book">
     <h1>Remover Livro</h1>
+  
+
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+ 
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  </div>
+   -->
+   <div class="delete-container">
+    <h2>🗑️ Remover Livro</h2>
+  
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <strong>Erro:</strong> {{ errorMessage }}
+    </div>
   
     <!-- Mensagem de sucesso -->
     <div *ngIf="successMessage" class="alert alert-success">
       {{ successMessage }}
     </div>
   
-    <!-- Mensagem de erro -->
-    <div *ngIf="errorMessage" class="alert alert-error">
-      {{ errorMessage }}
+    <!-- Exibe os detalhes do livro antes da remoção -->
+    <div *ngIf="book">
+      <p><strong>📚 Título:</strong> {{ book.title }}</p>
+      <p><strong>📝 Autor:</strong> {{ book.author }}</p>
+      <p><strong>🏷️ Categoria:</strong> {{ book.category }}</p>
+    </div>
+  
+    <!-- Botões de Ação -->
+    <div class="delete-actions">
+      <button class="btn btn-delete" (click)="deleteBook()">✅ Confirmar Exclusão</button>
+      <button class="btn btn-cancel" (click)="cancel()">❌ Cancelar</button>
     </div>
   </div>
   
