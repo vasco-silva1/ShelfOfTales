@@ -9,7 +9,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [NgIf,FormsModule,NgFor,GetBookComponent],
+  imports: [NgIf,FormsModule,NgFor,RouterOutlet],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css'
 })

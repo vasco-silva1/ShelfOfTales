@@ -45,16 +45,16 @@ import { ListreviewComponent } from '../../ReviewComponents/listreview/listrevie
 export class GetBookComponent implements OnInit {
   book: Book | null = null;
   errorMessage = '';
-  @Input() isbn: string | null = null;
+
 
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private router : Router) {}
 
   ngOnInit(): void {
-    // const isbn = this.route.snapshot.params['isbn']; // Obtém ISBN da URL
-    console.log('🔎 ISBN da rota:', this.isbn);
-    if (this.isbn) {
-      this.loadBook(this.isbn);
+    const isbn = this.route.snapshot.params['isbn']; // Obtém ISBN da URL
+    console.log('🔎 ISBN da rota:', isbn);
+    if (isbn) {
+      this.loadBook(isbn);
     }
   }
   

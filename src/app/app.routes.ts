@@ -17,93 +17,60 @@ import { clientGuard } from './BookComponents/guards/client.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { managerGuard } from './BookComponents/guards/manager.guard';
 
-// export const routes: Routes = [
-//   { path: 'SignUp', component: SignUpComponent },
-//     { path: 'signin', component: SignInComponent },
-
-//     { path: 'book', component: BookListComponent, canActivate : [clientGuard],children : [
-//       {
-//         path: ':isbn',
-//         component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
-//         children: [
-//           { path: 'delete', component: DeleteBookComponent },
-//           { path: 'update', component: UpdateComponent },
-//           { path: 'review', component: ListreviewComponent }
-//         ]
-//       }
-//     ] },
-
-//     {path:'book/available',component: BookListComponent ,children : [
-//       {
-//         path: ':isbn',
-//         component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
-//         children: [
-//           { path: 'delete', component: DeleteBookComponent },
-//           { path: 'update', component: UpdateComponent },
-//           { path: 'review', component: ListreviewComponent }
-//         ]
-//       }
-//     ]
-//   },
-
-//     {path:'book/unavailable',component: BookListComponent  ,children : [
-//       {
-//         path: ':isbn',
-//         component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
-//         children: [
-//           { path: 'delete', component: DeleteBookComponent },
-//           { path: 'update', component: UpdateComponent },
-//           { path: 'review', component: ListreviewComponent }
-//         ]
-//       }
-//     ]},
-//     { path: 'book/create', component: CreateBookComponent },
-//     { path: 'book/:isbn', component: GetBookComponent, children :[ { path: 'book/:isbn/delete', component: DeleteBookComponent },
-//        { path: 'book/:isbn/update', component: UpdateComponent },{ path: 'book/:isbn/review', component: ListreviewComponent }]}
-       
-       
-
-//    ,
-//     { path: 'book/:isbn/availability', component: UpdateAvailabilityComponent },
-//     { path: 'category/create', component: CreateCategoryComponent },
-//     { path: 'category', component: ListCategoriesComponent },
-//     { path: 'book/:isbn/review/write', component: CreateReviewComponent },
-//     { path: 'unauthorized', component: SignInComponent}, // Ensure this route is configured
-//       { path: '', component: HomeComponent }, // Página inicial acessível a todos
-//       { path: '**', redirectTo: '' } // Redireciona qualquer rota inválida para a Home
-      
-// ]
-// ;
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'SignUp', component: SignUpComponent },
-  { path: 'signin', component: SignInComponent },
+    { path: 'signin', component: SignInComponent },
 
-  // 📚 Book List & Filtering
-  { path: 'book', component: BookListComponent, canActivate: [clientGuard] },
-  { path: 'book/available', component: BookListComponent },
-  { path: 'book/unavailable', component: BookListComponent, canActivate: [managerGuard] },
+    { path: 'book', component: BookListComponent, canActivate : [clientGuard],children : [
+      {
+        path: ':isbn',
+        component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
+        children: [
+          { path: 'delete', component: DeleteBookComponent },
+          { path: 'update', component: UpdateComponent },
+          { path: 'review', component: ListreviewComponent }
+        ]
+      }
+    ] },
 
-  // 📖 Book Details & Actions (Outside of BookList)
-  { path: 'book/:isbn', component: GetBookComponent },
-  { path: 'book/:isbn/delete', component: DeleteBookComponent },
-  { path: 'book/:isbn/update', component: UpdateComponent },
-  { path: 'book/:isbn/review', component: ListreviewComponent },
+    {path:'book/available',component: BookListComponent ,children : [
+      {
+        path: ':isbn',
+        component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
+        children: [
+          { path: 'delete', component: DeleteBookComponent },
+          { path: 'update', component: UpdateComponent },
+          { path: 'review', component: ListreviewComponent ,children: [{ path: 'write', component: CreateReviewComponent }]}
+        ]
+      }
+    ]
+  },
 
-  // 🔥 Create & Manage Books
-  { path: 'book/create', component: CreateBookComponent },
-  { path: 'book/:isbn/availability', component: UpdateAvailabilityComponent },
+    {path:'book/unavailable',component: BookListComponent  ,children : [
+      {
+        path: ':isbn',
+        component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
+        children: [
+          { path: 'delete', component: DeleteBookComponent },
+          { path: 'update', component: UpdateComponent },
+          { path: 'review', component: ListreviewComponent }
+        ]
+      }
+    ]},
+    { path: 'book/create', component: CreateBookComponent },
+    { path: 'book/:isbn', component: GetBookComponent, children :[ { path: 'book/:isbn/delete', component: DeleteBookComponent },
+       { path: 'book/:isbn/update', component: UpdateComponent },{ path: 'book/:isbn/review', component: ListreviewComponent }]}
+       
+       
 
-  // 🔥 Categories
-  { path: 'category/create', component: CreateCategoryComponent },
-  { path: 'category', component: ListCategoriesComponent },
-
-  // 🔥 Reviews
-  { path: 'book/:isbn/review/write', component: CreateReviewComponent },
-
-  // 🚫 Unauthorized Access
-  { path: 'unauthorized', component: SignInComponent },
-
-  // 🔄 Fallback for unknown routes
-  { path: '**', redirectTo: '' }
-];
+   ,
+    { path: 'book/:isbn/availability', component: UpdateAvailabilityComponent },
+    { path: 'category/create', component: CreateCategoryComponent },
+    { path: 'category', component: ListCategoriesComponent },
+    { path: 'book/:isbn/review/write', component: CreateReviewComponent },
+    { path: 'unauthorized', component: SignInComponent}, // Ensure this route is configured
+      { path: '', component: HomeComponent }, // Página inicial acessível a todos
+      { path: '**', redirectTo: '' } // Redireciona qualquer rota inválida para a Home
+      
+]
+;
