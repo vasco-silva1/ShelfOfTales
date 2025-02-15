@@ -69,7 +69,5 @@ export class AvailableBooksComponent implements OnInit {
   back(){
      this.router.navigate([''])
   }
-  // back(): void {
-  //   window.history.back(); // ✅ Goes to the previous page
-  // }
+
 }

@@ -18,10 +18,6 @@ export class CreateBookComponent {
   isSubmitting = false;
   errorMessage = '';
   
-  
-  
-
-
   constructor(
     private fb: FormBuilder,
     private bookService: BookService,
