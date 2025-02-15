@@ -22,9 +22,13 @@ export class UpdateAvailabilityComponent implements OnInit {
     private router: Router
   ) {}
 
+
+
+  
   ngOnInit(): void {
     // Obtém o ISBN da rota
-    this.isbn = this.route.snapshot.paramMap.get('isbn') || '';
+    this.isbn = this.route.parent?.snapshot.paramMap.get('isbn') || '';
+    console.log(this.isbn)
     if (!this.isbn) {
       this.errorMessage = 'ISBN inválido!';
     }
@@ -39,7 +43,7 @@ export class UpdateAvailabilityComponent implements OnInit {
     this.bookService.updateBookAvailability(this.isbn, available).subscribe({
       next: () => {
         this.message = `Disponibilidade atualizada para: ${available ? 'Disponível' : 'Indisponível'}`;
-        // setTimeout(() => this.router.navigate(['/books']), 2000);
+        setTimeout(() => this.router.navigate(['/manager']), 2000);
       },
       error: (err) => {
         console.error('Erro ao atualizar disponibilidade:', err);

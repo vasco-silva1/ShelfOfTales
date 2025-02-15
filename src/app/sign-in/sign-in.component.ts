@@ -20,8 +20,12 @@ export class SignInComponent {
       next: (response) => {
         console.log('User logged in successfully:', response);
         
-        alert(`Sign in successful! Welcome back.${this.authServ.role()}`);
-        this.router.navigate(['/home']);
+        alert(`Sign in successful! Welcome back.${this.authServ.userSubject.value?.role}`);
+        if(this.authServ.userSubject.value?.role=='client'){
+        this.router.navigate(['/client']);}
+        if(this.authServ.userSubject.value?.role=='manager'){
+          this.router.navigate(['/manager']);}
+
       },
       error: (error) => {
         console.error('Error during sign in:', error);
@@ -29,6 +33,9 @@ export class SignInComponent {
       }
     });
   }
+  back(){
+    this.router.navigate([''])
+ }
 
   resetLogin() {
     this.newLogin = { email: '', password: '' };

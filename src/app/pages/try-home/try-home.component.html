@@ -1,0 +1,34 @@
+
+  <div class="container">
+  <!-- Left Section (Componentes dinâmicos serão carregados aqui) -->
+  <div class="left-section">
+    <h1 class="brand">Think before you speak</h1>
+    <p class="subtext" appHighlight="lightgreen" > Read before you think.</p>
+
+    <h2 class="coming-soon" >Shelf of Tales<span class="blinking-cursor">|</span></h2>
+
+    <button class="notify-btn" (click)="openSignIn()">Sign me in →</button>
+
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="book/available">📘 Books</a>
+      <a href="category">🔗 Categories</a>
+    </div>
+
+    <p class="footer">Upskill 2025</p>
+  </div>
+
+  <!-- Right Section (Imagem de fundo e contagem) -->
+  <div class="right-section">
+    <div class="overlay"></div>
+    <div class="countdown">
+      <p class="description">
+        We handcraft unique design & digital experiences to surprise the universe.
+      </p>
+      <div class="book-count">
+        <h3 *ngIf="!isLoading">{{ nrBooks }}</h3>
+      </div>
+      <p class="more-days">Books waiting for you</p>
+    </div>
+  </div>
+</div>

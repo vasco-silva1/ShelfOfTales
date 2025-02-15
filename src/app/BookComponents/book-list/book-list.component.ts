@@ -5,6 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GetBookComponent } from '../get-book/get-book.component';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -19,19 +20,11 @@ export class BookListComponent implements OnInit {
   errorMessage = ''; // Mensagem de erro
   selectedBookIsbn: string | null = null; // ISBN do livro selecionado para exibição no modal
 
-  constructor(private bookService: BookService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private bookService: BookService, private router: Router, private route: ActivatedRoute,private authservice: AuthService) { }
 
   ngOnInit(): void {
-    const path = this.route.snapshot.routeConfig?.path;
-    console.log('🔍 Route Path:', path);
-
-    if (path === 'book/available') {
-      this.loadAvailableBooks();
-    } else if (path === 'book/unavailable') {
-      this.loadUnavailableBooks();
-    } else {
       this.loadAllBooks();
-    }
+    
   }
 
   // Método para carregar todos os livros
@@ -50,41 +43,12 @@ export class BookListComponent implements OnInit {
     });
   }
 
-  // Método para carregar livros disponíveis
-  loadAvailableBooks(): void {
-    this.isLoading = true;
-    this.bookService.getAvailableBooks().subscribe({
-      next: (data) => {
-        this.books = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar livros disponíveis:', err);
-        this.errorMessage = 'Erro ao carregar livros disponíveis. Tente novamente mais tarde.';
-        this.isLoading = false;
-      },
-    });
-  }
-
-  // Método para carregar livros indisponíveis
-  loadUnavailableBooks(): void {
-    this.isLoading = true;
-    this.bookService.getUnavailableBooks().subscribe({
-      next: (data) => {
-        this.books = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar livros indisponíveis:', err);
-        this.errorMessage = 'Erro ao carregar livros indisponíveis. Tente novamente mais tarde.';
-        this.isLoading = false;
-      },
-    });
-  }
 
   openModal(isbn: string): void {
     console.log('📖 Livro clicado, navegando para /book/' + isbn);
-    this.router.navigate(['book', isbn]); // Navega para /book/:isbn
+    if(this.authservice.userSubject.value?.role=='client'){
+    this.router.navigate(['/client/book/all', isbn]); // Navega para /book/:isbn
+    }
   }
   
   

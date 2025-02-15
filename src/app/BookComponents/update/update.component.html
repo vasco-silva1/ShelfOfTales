@@ -1,3 +1,4 @@
+
 <div class="modal">
   <div class="modal-content">
     <button class="close-modal" (click)="closeModal()">&#x2715;</button>
@@ -11,6 +12,11 @@
 
     <!-- 🔴 Só exibe o formulário se "book" existir -->
     <form *ngIf="book" [formGroup]="bookForm" (ngSubmit)="updateBook()" class="form-container">
+      <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input id="isbn" type="text" formControlName="isbn" [attr.disabled]="true" />
+      </div>
+      
       <div class="form-group">
         <label for="title">Título:</label>
         <input id="title" type="text" formControlName="title" />
@@ -34,6 +40,14 @@
       <div class="form-group">
         <label for="cover">URL da Capa:</label>
         <input id="cover" type="text" formControlName="cover" />
+      </div>
+      
+      <div class="form-group">
+        <label for="available">Disponível:</label>
+        <select id="available" formControlName="available">
+          <option [value]="true">Sim</option>
+          <option [value]="false">Não</option>
+        </select>
       </div>
 
       <button type="submit" class="btn-update" [disabled]="bookForm.invalid">Atualizar</button>

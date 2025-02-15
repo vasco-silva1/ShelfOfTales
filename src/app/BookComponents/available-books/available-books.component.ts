@@ -3,7 +3,8 @@ import { BookService } from '../../Services/book.service';
 import { Book } from '../../Models/book';
 import { NgFor, NgIf } from '@angular/common';
 import { GetBookComponent } from '../get-book/get-book.component';
-import { Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-available-books',
@@ -19,47 +20,56 @@ export class AvailableBooksComponent implements OnInit {
   selectedBookIsbn: string | null = null; // ISBN do livro selecionado para exibição no modal
 
 
-  constructor(private bookService: BookService,private router : Router) {}
+  constructor(private bookService: BookService, private route: ActivatedRoute,private router:Router, private authservice : AuthService) {}
 
   ngOnInit(): void {
     this.loadAvailableBooks(); // Carrega os livros disponíveis ao iniciar o componente
   }
 
-  // Método para carregar livros disponíveis
-  // loadAvailableBooks(): void {
-  //   this.isLoading = true;
 
-  //   this.bookService.getAvailableBooks().subscribe({
-  //     next: (data) => {
-  //       this.isLoading = false; // Desativa o indicador de carregamento
-  //     },
-  //     error: (err) => {
-  //       console.error('Erro ao carregar livros disponíveis:', err);
-  //       this.errorMessage = 'Erro ao carregar livros disponíveis. Tente novamente mais tarde.';
-  //       this.isLoading = false; // Desativa o indicador de carregamento
-  //     },
-  //   });
-  // }
 
-  private loadAvailableBooks(): void {
-    this.isLoading = true;
+  loadAvailableBooks(): void {
     this.bookService.getAvailableBooks().subscribe({
       next: (data) => {
-        console.log('✅ Livros disponíveis carregados:', data);
-        this.books = data; // Agora os livros são armazenados corretamente
+        console.log(data)
+        this.books = data; // ✅ Ensures only available books are stored
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('❌ Erro ao carregar livros disponíveis:', err);
-        this.errorMessage = 'Erro ao carregar livros disponíveis. Tente novamente mais tarde.';
+        console.error('❌ Error fetching available books:', err);
+        this.errorMessage = 'Error loading books.';
         this.isLoading = false;
-      },
+      }
     });
+  }
+
+  public isClient() : boolean{
+    return this.authservice.hasRole('client')
+  }
+  public isManager() : boolean{
+    return this.authservice.hasRole('manager')
+  }
+  public isAuth() :boolean{
+    return this.authservice.isAuth()
   }
 
   openBook(isbn: string): void {
     console.log('📖 Livro clicado, ISBN:', isbn); // ✅ Confirma que o ISBN está correto
-    this.router.navigate([`/book/available/${isbn}`]); // ✅ Navega para a página do livro
+    if (this.isClient()) {
+      this.router.navigate([`/client/book/available/${isbn}`]);
+    } else if (this.isManager()) {
+      this.router.navigate([`/manager/book/available/${isbn}`]);
+    } else {
+      this.router.navigate([`/book/available/${isbn}`]);
+    }
   }
+  
+  
 
+  back(){
+     this.router.navigate([''])
+  }
+  // back(): void {
+  //   window.history.back(); // ✅ Goes to the previous page
+  // }
 }

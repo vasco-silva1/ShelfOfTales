@@ -1,0 +1,17 @@
+<div class="user-info-container">
+    <h2 class="user-info-title">👤 Utilizador</h2>
+  
+    <!-- Exibir informações do utilizador -->
+    <div class="user-details" *ngIf="user">
+      <p><strong>🧑 Nome:</strong> {{ user.name }}</p>
+      <p><strong>📧 Email:</strong> {{ user.email }}</p>
+      <p><strong>⚙️ Role:</strong> {{ user.role }}</p>
+    </div>
+  
+    <!-- Exibir mensagem de erro -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  

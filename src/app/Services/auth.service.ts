@@ -54,6 +54,9 @@ export class AuthService {
 
   logout() { this.tokenServ.deleteToken('user'); this.userSubject.next(null) }
 
+  isAuth() : boolean{
+    return this.userSubject.value !==null
+  }
   
   hasToken(): boolean {
     return this.tokenServ.hasToken('user');

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { User } from '../Models/user';
+import { UserAuth } from '../Models/user-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class UserService {
   
   createUser(newUser: User): Observable<any> {
     return this.http.post<any>(`${this.endPoint}/signup`, newUser);
+  }
+  getUserInfo(): Observable<UserAuth> {
+    return this.http.get<UserAuth>(`${this.endPoint}`);
   }
 
 }

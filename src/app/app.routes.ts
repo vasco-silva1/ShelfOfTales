@@ -14,37 +14,77 @@ import { ListCategoriesComponent } from './CategoryComponents/list-categories/li
 import { CreateReviewComponent } from './ReviewComponents/create-review/create-review.component';
 import { ListreviewComponent } from './ReviewComponents/listreview/listreview.component';
 import { clientGuard } from './BookComponents/guards/client.guard';
-import { HomeComponent } from './pages/home/home.component';
 import { managerGuard } from './BookComponents/guards/manager.guard';
+import { TryHomeComponent } from './pages/try-home/try-home.component';
+import { ClientDashboardComponent } from './pages/client-dashboard/client-dashboard.component';
+import { ManagerDashboardComponent } from './pages/Manager-dashboard/manager-dashboard.component';
+import { RoleRedirectGuard } from './BookComponents/guards/role.guard';
+import { GetuserComponent } from './UserComponents/getuser/getuser.component';
 
 export const routes: Routes = [
+  { path: '', component: TryHomeComponent },
   { path: 'SignUp', component: SignUpComponent },
-    { path: 'signin', component: SignInComponent },
+  { path: 'signin', component: SignInComponent },
+  
+  // 📌 Client Dashboard Routes
+  { path: "client", component: ClientDashboardComponent, canActivate:[clientGuard], children: [ { path: 'user', component: GetuserComponent },{ path: 'category', component: ListCategoriesComponent },
+    {path:'book/available',component:AvailableBooksComponent ,children : [
+    {
+      path: ':isbn',
+      component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
+      children: [
+        { path: 'delete', component: DeleteBookComponent },
+        { path: 'update', component: UpdateComponent },
+        { path: 'review', component: ListreviewComponent },
+        { path: 'review/write', component: CreateReviewComponent } 
+      ]
+    }
+  ]
+},
 
-    { path: 'book', component: BookListComponent, canActivate : [clientGuard],children : [
+  
+    // 📚 All Books
+    { path: 'book/all', component: BookListComponent, children: [
+      { path: ':isbn', component: GetBookComponent, children: [
+        { path: 'delete', component: DeleteBookComponent },
+        { path: 'update', component: UpdateComponent },
+        { path: 'review', component: ListreviewComponent },
+        { path: 'review/write', component: CreateReviewComponent } 
+      ]}
+    ]}]},
+  
+
+      // 📌 Manager Dashboard Routes
+    { path: "manager", component: ManagerDashboardComponent, canActivate:[managerGuard], children: [ { path: 'user', component: GetuserComponent },{ path: 'category', component: ListCategoriesComponent }, 
+      { path: 'category/create', component: CreateCategoryComponent },{path:'book/unavailable',component:UnavailableBooksComponent ,children : [
       {
         path: ':isbn',
         component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
         children: [
           { path: 'delete', component: DeleteBookComponent },
           { path: 'update', component: UpdateComponent },
-          { path: 'review', component: ListreviewComponent }
-        ]
-      }
-    ] },
-
-    {path:'book/available',component: BookListComponent ,children : [
-      {
-        path: ':isbn',
-        component: GetBookComponent, // ✅ Agora GetBookComponent é carregado como modal dentro da página
-        children: [
-          { path: 'delete', component: DeleteBookComponent },
-          { path: 'update', component: UpdateComponent },
+          { path: 'availability', component: UpdateAvailabilityComponent },
           { path: 'review', component: ListreviewComponent ,children: [{ path: 'write', component: CreateReviewComponent }]}
         ]
       }
     ]
-  },
+  },{ path: 'book/available', component: AvailableBooksComponent, children: [
+    { path: ':isbn', component: GetBookComponent, children: [
+      { path: 'delete', component: DeleteBookComponent },
+      { path: 'update', component: UpdateComponent },
+      { path: 'availability', component: UpdateAvailabilityComponent },
+      { path: 'review', component: ListreviewComponent,children:[{ path: 'write', component: CreateReviewComponent }] },
+       
+    ]}
+  ]}]},
+    
+
+// 📌 Unregisted Dashboard Routes
+
+    {path:'book/available',component:AvailableBooksComponent},
+    {path:'book/available/:isbn',component:GetBookComponent},
+
+    { path: 'category', component: ListCategoriesComponent },
 
     {path:'book/unavailable',component: BookListComponent  ,children : [
       {
@@ -64,13 +104,14 @@ export const routes: Routes = [
        
 
    ,
-    { path: 'book/:isbn/availability', component: UpdateAvailabilityComponent },
+    // { path: 'availability', component: UpdateAvailabilityComponent },
+    { path: 'user', component: GetuserComponent },
     { path: 'category/create', component: CreateCategoryComponent },
     { path: 'category', component: ListCategoriesComponent },
-    { path: 'book/:isbn/review/write', component: CreateReviewComponent },
+    { path: 'write', component: CreateReviewComponent },
     { path: 'unauthorized', component: SignInComponent}, // Ensure this route is configured
-      { path: '', component: HomeComponent }, // Página inicial acessível a todos
-      { path: '**', redirectTo: '' } // Redireciona qualquer rota inválida para a Home
+       // Página inicial acessível a todos
+      { path: '**', component:TryHomeComponent,canActivate:[RoleRedirectGuard] } // Redireciona qualquer rota inválida para a Home
       
 ]
 ;

@@ -3,6 +3,8 @@ import { Category } from '../../Models/category';
 import { CategoryService } from '../../Services/category.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -15,7 +17,7 @@ export class ListCategoriesComponent {
   categories: Category[] = []; // Lista de categorias
   errorMessage: string | null = null;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private router :Router, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -32,4 +34,12 @@ export class ListCategoriesComponent {
       }
     });
   }
+  
+  back(){
+    this.router.navigate([''])
+ }
+
+ public isAuth() :boolean{
+  return this.authService.isAuth()
+}
 }

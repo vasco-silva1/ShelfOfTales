@@ -25,8 +25,8 @@ export class CreateReviewComponent {
       return;
     }
 
-    this.route.params.subscribe(params =>  this.isbn = params['isbn'] );
-
+    this.route.parent?.params.subscribe(params =>  this.isbn = params['isbn'] );
+    console.log("parent",this.isbn)
     const SendReview = {
       isbn: this.isbn,
       review : this.reviewText
@@ -38,7 +38,7 @@ export class CreateReviewComponent {
         this.successMessage = 'Review submitted successfully!';
         this.errorMessage = null;
         setTimeout(() => {
-          location.reload(); // Refresh reviews after submission
+          this.router.navigate(['../'], { relativeTo: this.route }); // Go one level up
         }, 2000);
       },
       error: (err) => {

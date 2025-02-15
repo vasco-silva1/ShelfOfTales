@@ -1,0 +1,79 @@
+/* 🌟 Container Principal */
+.user-info-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #eb6e08, #5d8bee);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .user-info-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* 🏷️ Título */
+  .user-info-title {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    border-bottom: 3px solid #fff;
+    display: inline-block;
+    padding-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  /* 👤 Informações do Utilizador */
+  .user-details {
+    margin-top: 20px;
+    text-align: left;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .user-details p {
+    margin: 15px 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    border-left: 5px solid #fff;
+    padding-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-details p:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ⚠️ Mensagem de Erro */
+  .error-message {
+    color: #e74c3c;
+    background: #fdecea;
+    border: 1px solid #e74c3c;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+  
+  /* 🛠️ Responsividade */
+  @media (max-width: 500px) {
+    .user-info-container {
+      max-width: 90%;
+      padding: 20px 15px;
+    }
+  
+    .user-info-title {
+      font-size: 1.6rem;
+    }
+  
+    .user-details p {
+      font-size: 1rem;
+    }
+  }
+  

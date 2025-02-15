@@ -1,29 +1,11 @@
-<!-- <div *ngIf="isLoading" class="loading">Carregando livros...</div>
-<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-
+<button class="back-btn" *ngIf="!isAuth()" (click)="back()"> Back</button>
 <div *ngIf="!isLoading && books.length > 0" class="books-grid">
   <div class="book-card" *ngFor="let book of books" (click)="openBook(book.isbn)">
     <img [src]="book.cover" [alt]="book.title" class="book-image" />
     <div class="book-info">
       <h3>{{ book.title }}</h3>
       <p>{{ book.author }}</p>
-      <p class="book-rating">Nota: {{ book.isbn }}</p>
-    </div>
-  </div>
-</div> -->
-
-<div *ngIf="isLoading" class="loading">Carregando livros...</div>
-<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-<!-- Grade de Livros -->
-<div *ngIf="!isLoading && books.length > 0" class="books-grid">
-  <div class="book-card" *ngFor="let book of books" (click)="openBook(book.isbn)">
-    <img [src]="book.cover" [alt]="book.title" class="book-image" />
-    <div class="book-info">
-      <h3>{{ book.title }}</h3>
-      <p>{{ book.author }}</p>
-      <p class="book-rating">Nota: {{ book.isbn }}</p>
+      <p class="book-rating">ISBN: {{ book.isbn }}</p>
     </div>
   </div>
 </div>

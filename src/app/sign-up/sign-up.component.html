@@ -1,19 +1,39 @@
-<table>
-        <tr>
-      <td><label for="name">Name:</label></td>
-      <td><input type="text" id="name" [(ngModel)]="newUser.name" required /></td>
-    </tr>
-    <tr>
-      <td><label for="email">Email:</label></td>
-      <td><input type="email" id="email" [(ngModel)]="newUser.email" required /></td>
-    </tr>
-    <tr>
-      <td><label for="password">Password:</label></td>
-      <td><input type="password" id="password" [(ngModel)]="newUser.password" required /></td>
-    </tr>
-    <tr>
-      <td colspan="2" style="text-align: center;">
-        <button (click)="signUp()">Sign Up</button>
-      </td>
-    </tr>
-  </table>
+<button class="back-btn"  (click)="back()"> Back</button>
+    <div class="login-container">
+        <div class="login-left">
+            <h2>Sign Up! 👋</h2>
+            <p>Join us today!</p>
+
+            <!-- Social Sign Ups -->
+            <button class="btn btn-google">Sign up with Google</button>
+            <button class="btn btn-apple">Sign up with Apple</button>
+
+            <p>Sign up with Email</p>
+
+            <!-- Sign Up Form -->
+            <form (ngSubmit)="signUp()">
+                <div class="email-login">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" [(ngModel)]="newUser.name" name="name" required placeholder="Your Name">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" [(ngModel)]="newUser.email" name="email" required placeholder="you@example.com">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" [(ngModel)]="newUser.password" name="password" required placeholder="******">
+
+                    <button type="submit" class="btn btn-signin">Sign Up</button>
+                </div>
+            </form>
+
+            <div class="signup-link">Already have an account? <a href="Login">Log In Now</a></div>
+        </div>
+
+        <div class="login-right">
+            <h3>Why should I sign up?</h3>
+            <p>
+                By signing up, you can access a wider collection of books, manage your categories, and more.
+            </p>
+           
+        </div>
+    </div>

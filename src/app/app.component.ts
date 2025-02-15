@@ -4,13 +4,15 @@ import { User } from './Models/user';
 import { AuthService } from './Services/auth.service';
 import { UserAuth } from './Models/user-auth';
 import { NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { LoaderComponent } from "./Loader/loader/loader.component";
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit{
   userSession: UserAuth | null = null;
 
 
-  constructor(private authService: AuthService,private router : Router) {
+  constructor(private authService: AuthService,private router : Router,private http:HttpClient) {
   }
   ngOnInit(): void {
     this.authService.user.subscribe(user => this.userSession = user);
@@ -42,4 +44,5 @@ export class AppComponent implements OnInit{
   isLoggedIn(): boolean {
     return this.userSession !== null;
   }
+
 }

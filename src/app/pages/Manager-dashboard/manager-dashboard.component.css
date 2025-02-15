@@ -1,0 +1,131 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Main Dashboard Layout */
+  .dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: #eb6e08;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .brand {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    padding: 15px 10px;
+  }
+  
+  .sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar nav ul li:hover,
+  .sidebar nav ul li.active {
+    background: #1e2a38;
+  }
+  
+  .sidebar nav ul li.logout {
+    margin-top: auto;
+    color: red;
+  }
+  
+  /* Dashboard Content */
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+    background: #f5f7fa;
+  }
+  
+  .dashboard-content header {
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .stat-box {
+    background: white;
+    padding: 20px;
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .stat-box h3 {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .stat-box p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Recent Activity */
+  .dashboard-activity {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-activity h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-activity ul {
+    list-style: none;
+  }
+  
+  .dashboard-activity ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .dashboard-stats {
+      flex-direction: column;
+    }
+  }
+  

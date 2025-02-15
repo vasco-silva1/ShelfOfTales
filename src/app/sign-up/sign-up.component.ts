@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../Models/user';
 import { UserService } from '../Services/user.service';
 import { FormsModule, NgModel } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -16,7 +17,7 @@ export class SignUpComponent {
   newUser: User ={ name: '', email: '', password: '' };
   msg: string = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router : Router) { }
 
   signUp() {
     this.userService.createUser(this.newUser).subscribe({
@@ -24,6 +25,7 @@ export class SignUpComponent {
         console.log('User created successfully:', response);
         alert('Sign up successful! Welcome to our platform.');
         this.resetUser();
+        this.router.navigate(['signin'])
       },
       error: (error) => {
         console.error('Error during sign up:', error);
@@ -31,7 +33,9 @@ export class SignUpComponent {
       }
     });}
 
-
+    back(){
+      this.router.navigate([''])
+   }
   resetUser() {
     this.newUser = { name: '', email: '', password: '' };
   }

@@ -1,0 +1,51 @@
+<div class="dashboard-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <h2 class="brand">📚 Shelf of Tales</h2>
+      <nav>
+        <ul>
+          <li class="active"><a href="#">🏠 Home</a></li>
+          <li><a href="/client/book/all">📖 See all books</a></li>
+          <li><a href="client/book/available">📖 Available books</a></li>
+          <li><a href="client/user">👤 User info</a></li>
+          <li><a href="client/category">⚙ Categories</a></li>
+          <button class="logout"><a (click)="logout()">🚪 Logout</a></button>
+        </ul>
+      </nav>
+    </aside>
+  
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-content">
+      <header>
+        <h1>Welcome, Client!</h1>
+        <p>Here’s what’s happening today</p>
+      </header>
+  
+      <section class="dashboard-stats">
+        <div class="stat-box">
+          <h3>📚 See all books</h3>
+          <p>12</p>
+        </div>
+        <div class="stat-box">
+          <h3>⭐ Reviews Given</h3>
+          <p>5</p>
+        </div>
+        <div class="stat-box">
+          <h3>📅 Due Soon</h3>
+          <p>3 Books</p>
+        </div>
+      </section>
+      <section class="outlet">
+        <router-outlet></router-outlet>
+            </section>
+      <section class="dashboard-activity">
+        <h2>Recent Activity</h2>
+        <ul>
+          <li>✅ You reviewed <strong>Harry Potter</strong></li>
+          <li>📖 You borrowed <strong>1984 by George Orwell</strong></li>
+          <li>⏳ You have <strong>1 book due in 3 days</strong></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  

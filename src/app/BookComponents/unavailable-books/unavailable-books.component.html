@@ -1,37 +1,13 @@
-<!-- list-unavailable-books.component.html -->
-
-<div class="book-list">
-    <h2>Unavailable Books</h2>
-    
-    <ul *ngIf="books.length > 0; else noBooks">
-      <li *ngFor="let book of books">
-        <div class="book-item">
-          <!-- Book Cover Image -->
-          <img *ngIf="book.cover" [src]="book.cover" alt="{{ book.title }} cover" class="book-cover-image">
-  
-          <!-- Book Details -->
-          <h3>{{ book.title }}</h3>
-          
-          <!-- Display Authors -->
-          <p><strong>Author(s):</strong> {{ book.author.join(', ') }}</p>
-          
-          <!-- Display Category -->
-          <p><strong>Category:</strong> {{ book.category }}</p>
-          
-          <!-- Display Price -->
-          <p><strong>Price:</strong> ${{ book.price }}</p>
-          
-          <!-- Display ISBN -->
-          <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-          
-          <!-- Availability Status -->
-          <p><strong>Status:</strong> Unavailable</p>
-        </div>
-      </li>
-    </ul>
-    
-    <ng-template #noBooks>
-      <p>No unavailable books at the moment.</p>
-    </ng-template>
+<div *ngIf="!isLoading && books.length > 0" class="books-grid">
+  <div class="book-card" *ngFor="let book of books" (click)="openBook(book.isbn)">
+    <img [src]="book.cover" [alt]="book.title" class="book-image" />
+    <div class="book-info">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.author }}</p>
+      <p class="book-rating">Nota: {{ book.isbn }}</p>
+    </div>
   </div>
-  
+</div>
+
+<!-- O GetBookComponent será carregado aqui como modal -->
+<router-outlet></router-outlet>

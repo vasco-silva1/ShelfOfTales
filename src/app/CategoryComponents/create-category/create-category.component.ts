@@ -4,11 +4,12 @@ import { Category } from '../../Models/category';
 import { CategoryService } from '../../Services/category.service';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { FocusDirective } from '../../Directives/focus.directive';
 
 @Component({
   selector: 'app-create-category',
   standalone: true,
-  imports: [FormsModule,NgIf],
+  imports: [FormsModule,NgIf,FocusDirective],
   templateUrl: './create-category.component.html',
   styleUrl: './create-category.component.css'
 })
